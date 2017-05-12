@@ -47,7 +47,7 @@
 	}
 
 function requestAPI(){
-	FB.api('me?fields=name,likes{link,name,picture},link', function(response){
+	FB.api('me?fields=name,likes.limit(100){link,name,picture,fan_count},link', function(response){
 		console.log(response);
 		perfil(response);
 		paginas(response);
@@ -79,6 +79,7 @@ function paginas(pagina){
 				  </div>
 				  <div class="media-body">
 				    <h4 class="media-heading">${pagina.likes.data[i].name}</h4>
+				    <p><strong><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Curtidas:</strong> <span class="badge">${pagina.likes.data[i].fan_count}</span> </p>
 				    <p><a href="${pagina.likes.data[i].link}" target="_blank"> Visitar a Página </a></p>
 				  </div>
 				</div>
